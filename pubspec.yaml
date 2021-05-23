@@ -44,7 +44,7 @@ dev_dependencies:
 flutter:
 
   # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
+  # included with your application, so that you can use the icons ind
   # the material Icons class.
   uses-material-design: true
 
