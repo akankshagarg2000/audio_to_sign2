@@ -104,6 +104,19 @@ class _SpeechScreenState extends State<SpeechScreen> {
         reverse: true,
         child: Column(
           children: [
+            
+            Container(
+              padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
+              child: TextHighlight(
+                text: _text,
+                words: _highlights,
+                textStyle: const TextStyle(
+                  fontSize: 32.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
             RaisedButton(
               onPressed: (){
                 print("function working"+ _text);
@@ -119,19 +132,8 @@ class _SpeechScreenState extends State<SpeechScreen> {
                   print("Sentence not found");
                 }
 },
-              child: Text(videoData["2"])),
-            Container(
-              padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-              child: TextHighlight(
-                text: _text,
-                words: _highlights,
-                textStyle: const TextStyle(
-                  fontSize: 32.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                ),
+              child: Text("Convert")
               ),
-            ),
           ],
         ),
       ),
