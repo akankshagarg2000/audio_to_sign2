@@ -1,11 +1,15 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoExample extends StatefulWidget {
 
 String index;
-VideoExample({this.index});
+String type;
+VideoExample({this.index, this.type});
+
 
   @override
   VideoState createState() => VideoState();
@@ -26,13 +30,13 @@ class VideoState extends State<VideoExample> {
       setState(() {});
     };
     createVideo();
-          playerController.play();
+        playerController.play();
   }
 
   void createVideo() {
     if (playerController == null) {
       playerController = VideoPlayerController.network(
-          "https://firebasestorage.googleapis.com/v0/b/audiotosign.appspot.com/o/sentences%2F"+ widget.index +".mp4?alt=media")
+          "https://firebasestorage.googleapis.com/v0/b/audiotosign.appspot.com/o/"+ widget.type + "%2F"+ widget.index +".mp4?alt=media")
         ..addListener(listener)
         ..setVolume(1.0)
         ..initialize()
@@ -44,7 +48,9 @@ class VideoState extends State<VideoExample> {
         playerController.initialize();
         playerController.play();
       }
+
     }
+    
   }
 
   @override

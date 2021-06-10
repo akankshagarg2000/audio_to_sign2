@@ -1,10 +1,12 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_voice/SplashScreen.dart';
 import 'package:flutter_voice/sentene_mapping.dart';
 import 'package:flutter_voice/video_screen.dart';
 import 'package:highlight_text/highlight_text.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:video_player/video_player.dart';
+import 'dart:io';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SpeechScreen(),
+      home: Splash2(),
     );
   }
 }
@@ -124,12 +126,14 @@ class _SpeechScreenState extends State<SpeechScreen> {
                 if(videoIndex!=-1){
                   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => VideoExample(index: videoIndex.toString() ,)),
+    MaterialPageRoute(builder: (context) => VideoExample(index: videoIndex.toString() , type: "sentences",)),
   );
 
                 }
                 else{
                   print("Sentence not found");
+                  displayAlphabets(sentence: _text);
+
                 }
 },
               child: Text("Convert")
@@ -168,10 +172,37 @@ class _SpeechScreenState extends State<SpeechScreen> {
     print("function working with "+sentence.toString().toLowerCase()+".");
     for(int i =0; i<250 ; i++){
       if(videoData["$i"].toString().toLowerCase() ==sentence.toString().toLowerCase()+"."){
-        print("sentence found at $i that is"+ sentence.toLowerCase()+".");
+        print("sentence found at $i that is"+ sentence.toLowerCase()+".");   
         return i;
       }
+     
+    
     }
-return -1;
+    return -1;
+
+  }
+
+  void displayAlphabets({String sentence}){
+    print("Inside the function.");
+    sleep(const Duration(seconds:3));
+
+    String z;
+    List my_list = [];
+    my_list= sentence.toLowerCase().split("");
+    String file_ext= "-abc";
+    for(int i=0 ; i< my_list.length;i++){
+       
+       z= my_list[i]+file_ext;
+       print(my_list[i]+file_ext);
+        Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => VideoExample(index: z.toString() , type: "letters",)),
+    
+
+  );
+ 
+
+    }
+
   }
 }

@@ -32,6 +32,7 @@ dependencies:
   highlight_text: 
   avatar_glow: 
   video_player:
+  splashscreen:
 
 dev_dependencies:
   flutter_test:
